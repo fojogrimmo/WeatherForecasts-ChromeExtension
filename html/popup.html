@@ -33,7 +33,7 @@
                 />
               </svg>
             </span>
-            <span class="location-info">Rostov-on-Don, RU</span>
+            <div class="location-info">Rostov-on-Don, <span>RU</span></div>
           </div>
         </div>
 
@@ -42,12 +42,19 @@
             <img src="/images/sunny.png" alt="Sunny icon" />
           </span>
           <h2 class="weather-temp">29°C</h2>
-          <h3 class="weather-status">Sunny</h3>
+          <div class="weather-info">
+            <h3 class="weather-status">Sunny</h3>
+            <div class="weather-time">19:43</div>
+          </div>
         </div>
       </div>
 
       <div class="info-tab">
-        <div class="today-info-container">
+        <div class="info-container">
+          <form class="info-form">
+            <input class="info-input" type="text" placeholder="Change city" />
+          </form>
+
           <div class="today-info"></div>
         </div>
       </div>

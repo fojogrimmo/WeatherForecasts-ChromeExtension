@@ -5,7 +5,7 @@
   "description": "Check current forecast directly in your browser fast and easily.",
   "action": {
     "default_popup": "html/popup.html",
-    "default-icon": "icons/icon.png"
+    "default-icon": "icons/icon-128.png"
   },
   "icons": {
     "16": "images/icon-16.png",
