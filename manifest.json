@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Weather Forecast",
+  "name": "Weather Forecasts",
   "version": "1.0",
   "description": "Check current forecast directly in your browser fast and easily.",
   "action": {
