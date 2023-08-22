@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:regular,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-tab">
+        <div class="weather gradient"></div>
+        <div class="date-container">
+          <h2 class="date-dayname">Wednesday</h2>
+          <span class="date-data">16 Aug 2023</span>
+
+          <div class="date-location">
+            <span class="location-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="white"
+                  d="m12.596 11.596l-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193a6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"
+                />
+              </svg>
+            </span>
+            <span class="location-info">Rostov-on-Don, RU</span>
+          </div>
+        </div>
+
+        <div class="weather-container">
+          <span class="weather-icon">
+            <img src="/images/sunny.png" alt="Sunny icon" />
+          </span>
+          <h2 class="weather-temp">29°C</h2>
+          <h3 class="weather-status">Sunny</h3>
+        </div>
+      </div>
+
+      <div class="info-tab">
+        <div class="today-info-container">
+          <div class="today-info"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/content.js"></script>
+</html>
