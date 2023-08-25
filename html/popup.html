@@ -14,9 +14,8 @@
   <body>
     <div class="container">
       <div class="weather-tab">
-        <div class="weather gradient"></div>
         <div class="date-container">
-          <h2 class="date-dayname">Wednesday</h2>
+          <h2 class="date-dayname"></h2>
           <span class="date-data">16 Aug 2023</span>
 
           <div class="date-location">
@@ -33,15 +32,18 @@
                 />
               </svg>
             </span>
-            <div class="location-info">Rostov-on-Don, <span>RU</span></div>
+            <div class="location-info">
+              <span id="city-name">Rostov-on-Don</span>,
+              <span id="country-name">RU</span>
+            </div>
           </div>
         </div>
 
         <div class="weather-container">
-          <span class="weather-icon">
-            <img src="/images/sunny.png" alt="Sunny icon" />
-          </span>
-          <h2 class="weather-temp">29°C</h2>
+          <div class="weather-icon">
+            <img src="/images/sunny.png" class="status-icon" />
+          </div>
+          <h2 class="weather-temp"><span id="current-temp">29</span>°C</h2>
           <div class="weather-info">
             <h3 class="weather-status">Sunny</h3>
             <div class="weather-time">19:43</div>
@@ -51,6 +53,20 @@
 
       <div class="info-tab">
         <div class="info-container">
+          <div class="today-wrapper">
+            <div class="today-container">
+              <div class="title">Feels like</div>
+              <div class="value"><span id="current-value">30 </span>°C</div>
+            </div>
+            <div class="today-container">
+              <div class="title">Humidity</div>
+              <div class="value"><span id="current-value">75 </span>%</div>
+            </div>
+            <div class="today-container">
+              <div class="title">Wind</div>
+              <div class="value"><span id="current-value">5 </span>km/h</div>
+            </div>
+          </div>
           <form class="info-form">
             <input class="info-input" type="text" placeholder="Change city" />
           </form>
