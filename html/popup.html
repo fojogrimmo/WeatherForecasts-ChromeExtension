@@ -56,26 +56,66 @@
           <div class="today-wrapper">
             <div class="today-container">
               <div class="title">Feels like</div>
-              <div class="value"><span id="current-value">30 </span>°C</div>
+              <div class="value"><span id="feels-like">30</span> °C</div>
             </div>
             <div class="today-container">
               <div class="title">Humidity</div>
-              <div class="value"><span id="current-value">75 </span>%</div>
+              <div class="value"><span id="humidity">75</span> %</div>
             </div>
             <div class="today-container">
               <div class="title">Wind</div>
-              <div class="value"><span id="current-value">5 </span>km/h</div>
+              <div class="value"><span id="wind-speed">5</span> km/h</div>
             </div>
           </div>
 
           <div class="forecast-info">
-            <div class="info-card"></div>
-            <div class="info-card"></div>
-            <div class="info-card"></div>
+            <div class="info-card">
+              <div class="card-icon">
+                <img src="/images/sunny.png" class="status-icon" />
+              </div>
+              <div class="card-dayname" id="today-dayname">Tue</div>
+              <div class="card-temp">
+                <div class="temp"><span id="max-today"></span> °</div>
+                <div class="temp"><span id="min-today"></span> °</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="card-icon">
+                <img src="/images/cloudy.png" class="status-icon" />
+              </div>
+              <div class="card-dayname" id="tomorrow-dayname">Wed</div>
+              <div class="card-temp">
+                <div class="temp"><span id="max-tomorrow"></span> °</div>
+                <div class="temp"><span id="min-tomorrow"></span> °</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="card-icon">
+                <img src="/images/stormy.png" class="status-icon" />
+              </div>
+              <div class="card-dayname" id="after-tomorrow-dayname">Thu</div>
+              <div class="card-temp">
+                <div class="temp"><span id="max-after-tomorrow"></span>°</div>
+                <div class="temp"><span id="min-after-tomorrow"></span>°</div>
+              </div>
+            </div>
           </div>
 
           <form class="info-form">
-            <input class="info-input" type="text" placeholder="Change city" />
+            <input
+              class="info-input"
+              type="text"
+              placeholder="Change city"
+              list="cities"
+            />
+            <datalist id="cities">
+              <option value="Moscow" />
+              <option value="Saint Petersburg" />
+              <option value="Bangkok" />
+              <option value="Paris" />
+              <option value="London" />
+              <option value="Dubai" />
+            </datalist>
           </form>
         </div>
       </div>
