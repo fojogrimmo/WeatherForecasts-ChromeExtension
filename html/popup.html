@@ -33,8 +33,8 @@
               </svg>
             </span>
             <div class="location-info">
-              <span id="city-name">Rostov-on-Don</span>,
-              <span id="country-name">RU</span>
+              <span id="city-name">City</span>,
+              <span id="country-name">Country</span>
             </div>
           </div>
         </div>
@@ -43,10 +43,10 @@
           <div class="weather-icon">
             <img src="/images/sunny.png" class="status-icon" />
           </div>
-          <h2 class="weather-temp"><span id="current-temp">29</span>°C</h2>
+          <h2 class="weather-temp"><span id="current-temp"></span>°C</h2>
           <div class="weather-info">
             <h3 class="weather-status">Sunny</h3>
-            <div class="weather-time">19:43</div>
+            <div class="weather-time">00:00</div>
           </div>
         </div>
       </div>
@@ -71,27 +71,30 @@
           <div class="forecast-info">
             <div class="info-card">
               <div class="card-icon">
-                <img src="/images/sunny.png" class="status-icon" />
+                <img src="/images/sunny.png" class="status-icon today-i" />
               </div>
               <div class="card-dayname" id="today-dayname">Tue</div>
               <div class="card-temp">
-                <div class="temp"><span id="max-today"></span> °</div>
-                <div class="temp"><span id="min-today"></span> °</div>
+                <div class="temp"><span id="max-today"></span>°</div>
+                <div class="temp"><span id="min-today"></span>°</div>
               </div>
             </div>
             <div class="info-card">
               <div class="card-icon">
-                <img src="/images/cloudy.png" class="status-icon" />
+                <img src="/images/cloudy.png" class="status-icon tomorrow-i" />
               </div>
               <div class="card-dayname" id="tomorrow-dayname">Wed</div>
               <div class="card-temp">
-                <div class="temp"><span id="max-tomorrow"></span> °</div>
-                <div class="temp"><span id="min-tomorrow"></span> °</div>
+                <div class="temp"><span id="max-tomorrow"></span>°</div>
+                <div class="temp"><span id="min-tomorrow"></span>°</div>
               </div>
             </div>
             <div class="info-card">
               <div class="card-icon">
-                <img src="/images/stormy.png" class="status-icon" />
+                <img
+                  src="/images/stormy.png"
+                  class="status-icon after-tomorrow-i"
+                />
               </div>
               <div class="card-dayname" id="after-tomorrow-dayname">Thu</div>
               <div class="card-temp">
