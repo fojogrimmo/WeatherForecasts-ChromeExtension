@@ -1,12 +1,7 @@
 * {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   border: none;
-}
-
-*,
-*::before,
-*::after {
   box-sizing: border-box;
 }
 
@@ -29,9 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-body::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: none;
 }
 
 .container {
@@ -43,7 +36,7 @@ body::-webkit-scrollbar {
   border-radius: 40px;
   box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
   background-color: #222831;
-  color: #ffffff;
+  color: #fff;
 }
 
 .weather-tab {
@@ -61,14 +54,12 @@ body::-webkit-scrollbar {
   margin-right: 40px;
   display: flex;
   flex-direction: column;
-  transition: 300ms ease;
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
 
 .weather-tab:hover {
-  -webkit-transform: scale(1.1) perspective(800px) rotateY(10deg);
   transform: scale(1.1) perspective(1500px) rotateY(10deg);
   box-shadow: 4px 5px 17px 9px rgba(174, 137, 201, 0.06);
-  transition: 300ms ease;
 }
 
 .date-dayname {
