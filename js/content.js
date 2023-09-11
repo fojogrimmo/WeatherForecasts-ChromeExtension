@@ -85,6 +85,14 @@ function setWeatherIcon(iconElement, code) {
   }
 }
 
+function saveDataToLocalStorage(city) {
+  localStorage.setItem("userCity", city);
+}
+
+function loadDataFromLocalStorage() {
+  return localStorage.getItem("userCity");
+}
+
 function getDefaultWeather() {
   const defaultUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${defaultCity}&days=3`;
 
@@ -97,9 +105,13 @@ function getDefaultWeather() {
       const weekdayIndex = date.getDay();
       const weekdayName = weekdays[weekdayIndex];
       weekDay.textContent = weekdayName;
-      todayDayName.textContent = weekdays[weekdayIndex].slice(0, 3);
-      tomorrowDayName.textContent = weekdays[weekdayIndex + 1].slice(0, 3);
-      afterTomorrowDayName.textContent = weekdays[weekdayIndex + 2].slice(0, 3);
+
+      for (let i = 0; i < 3; i++) {
+        const index = (weekdayIndex + i) % 7;
+        const shortName = weekdays[index].slice(0, 3);
+        [todayDayName, tomorrowDayName, afterTomorrowDayName][i].textContent =
+          shortName;
+      }
 
       // DATE ---
       const options = { day: "2-digit", month: "short", year: "numeric" };
@@ -153,8 +165,16 @@ getDefaultWeather();
 form.onsubmit = function (e) {
   e.preventDefault();
   city = inputField.value.trim();
+  saveDataToLocalStorage(city);
 
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
+  const savedCity = loadDataFromLocalStorage();
+  if (savedCity) {
+    inputField.value = savedCity;
+    getDefaultWeather(savedCity);
+  }
+  const url = savedCity
+    ? `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${savedCity}&days=3`
+    : `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
 
   fetch(url)
     .then((response) => {
