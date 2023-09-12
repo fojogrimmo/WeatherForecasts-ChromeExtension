@@ -94,7 +94,10 @@ function loadDataFromLocalStorage() {
 }
 
 function getDefaultWeather() {
-  const defaultUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${defaultCity}&days=3`;
+  const savedCity = loadDataFromLocalStorage();
+  const defaultUrl = savedCity
+    ? `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${savedCity}&days=3`
+    : `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${defaultCity}&days=3`;
 
   fetch(defaultUrl)
     .then((response) => response.json())
@@ -170,82 +173,91 @@ form.onsubmit = function (e) {
   const savedCity = loadDataFromLocalStorage();
   if (savedCity) {
     inputField.value = savedCity;
-    getDefaultWeather(savedCity);
+    getWeather(savedCity);
   }
-  const url = savedCity
-    ? `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${savedCity}&days=3`
-    : `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
+  function getWeather() {
+    const url = savedCity
+      ? `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${savedCity}&days=3`
+      : `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
 
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      weatherIcon.src = "";
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        weatherIcon.src = "";
 
-      // TIME ---
-      currentTime.textContent = data.location.localtime.slice(-5);
+        // TIME ---
+        currentTime.textContent = data.location.localtime.slice(-5);
 
-      // WEEKDAY ---
-      const date = new Date(data.location.localtime);
-      const weekdayIndex = date.getDay();
-      const weekdayName = weekdays[weekdayIndex];
-      weekDay.textContent = weekdayName;
+        // WEEKDAY ---
+        const date = new Date(data.location.localtime);
+        const weekdayIndex = date.getDay();
+        const weekdayName = weekdays[weekdayIndex];
+        weekDay.textContent = weekdayName;
 
-      // DATE ---
-      const options = { day: "2-digit", month: "short", year: "numeric" };
+        for (let i = 0; i < 3; i++) {
+          const index = (weekdayIndex + i) % 7;
+          const shortName = weekdays[index].slice(0, 3);
+          [todayDayName, tomorrowDayName, afterTomorrowDayName][i].textContent =
+            shortName;
+        }
 
-      const formattedDate = date.toLocaleString("en-US", options);
-      const parts = formattedDate.split(" ");
+        // DATE ---
+        const options = { day: "2-digit", month: "short", year: "numeric" };
 
-      const rearrangedDate = `${parts[1]} ${parts[0]} ${parts[2]}`;
-      todayDate.textContent = rearrangedDate.replace(",", "");
+        const formattedDate = date.toLocaleString("en-US", options);
+        const parts = formattedDate.split(" ");
 
-      // CITY NAME ---
-      cityName.textContent = data.location.name;
-      // COUNTRY ---
-      countryName.textContent = data.location.country;
-      // TEMP ---
-      currentTemperature.textContent = data.current.temp_c.toFixed();
-      // WEATHER ST ---
-      weatherStatus.textContent = data.current.condition.text;
+        const rearrangedDate = `${parts[1]} ${parts[0]} ${parts[2]}`;
+        todayDate.textContent = rearrangedDate.replace(",", "");
 
-      // FL
-      feelsLike.textContent = data.current.feelslike_c.toFixed();
+        // CITY NAME ---
+        cityName.textContent = data.location.name;
+        // COUNTRY ---
+        countryName.textContent = data.location.country;
+        // TEMP ---
+        currentTemperature.textContent = data.current.temp_c.toFixed();
+        // WEATHER ST ---
+        weatherStatus.textContent = data.current.condition.text;
 
-      humidity.textContent = data.current.humidity;
-      windSpeed.textContent = data.current.wind_kph;
+        // FL
+        feelsLike.textContent = data.current.feelslike_c.toFixed();
 
-      todayMaxTemp.textContent =
-        data.forecast.forecastday[0].day.maxtemp_c.toFixed();
+        humidity.textContent = data.current.humidity;
+        windSpeed.textContent = data.current.wind_kph;
 
-      todayMinTemp.textContent =
-        data.forecast.forecastday[0].day.mintemp_c.toFixed();
+        todayMaxTemp.textContent =
+          data.forecast.forecastday[0].day.maxtemp_c.toFixed();
 
-      tomorrowMaxTemp.textContent =
-        data.forecast.forecastday[1].day.maxtemp_c.toFixed();
-      tomorrowMinTemp.textContent =
-        data.forecast.forecastday[1].day.mintemp_c.toFixed();
+        todayMinTemp.textContent =
+          data.forecast.forecastday[0].day.mintemp_c.toFixed();
 
-      afterTomorrowMaxTemp.textContent =
-        data.forecast.forecastday[2].day.maxtemp_c.toFixed();
-      afterTomorrowMinTemp.textContent =
-        data.forecast.forecastday[2].day.mintemp_c.toFixed();
-      //
+        tomorrowMaxTemp.textContent =
+          data.forecast.forecastday[1].day.maxtemp_c.toFixed();
+        tomorrowMinTemp.textContent =
+          data.forecast.forecastday[1].day.mintemp_c.toFixed();
 
-      setWeatherIcon(weatherIcon, data.current.condition.code);
-      setWeatherIcon(
-        todayForecastIcon,
-        data.forecast.forecastday[0].day.condition.code
-      );
-      setWeatherIcon(
-        tomorrowForecastIcon,
-        data.forecast.forecastday[1].day.condition.code
-      );
-      setWeatherIcon(
-        afterTomorrowForecastIcon,
-        data.forecast.forecastday[2].day.condition.code
-      );
-    });
+        afterTomorrowMaxTemp.textContent =
+          data.forecast.forecastday[2].day.maxtemp_c.toFixed();
+        afterTomorrowMinTemp.textContent =
+          data.forecast.forecastday[2].day.mintemp_c.toFixed();
+        //
+
+        setWeatherIcon(weatherIcon, data.current.condition.code);
+        setWeatherIcon(
+          todayForecastIcon,
+          data.forecast.forecastday[0].day.condition.code
+        );
+        setWeatherIcon(
+          tomorrowForecastIcon,
+          data.forecast.forecastday[1].day.condition.code
+        );
+        setWeatherIcon(
+          afterTomorrowForecastIcon,
+          data.forecast.forecastday[2].day.condition.code
+        );
+      });
+  }
 };
