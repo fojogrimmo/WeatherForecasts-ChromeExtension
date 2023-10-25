@@ -77,7 +77,7 @@ function updateWeatherInfo(data) {
   weatherStatus.textContent = data.current.condition.text;
   feelsLike.textContent = data.current.feelslike_c.toFixed();
   humidity.textContent = data.current.humidity;
-  windSpeed.textContent = data.current.wind_kph;
+  windSpeed.textContent = data.current.wind_kph / 3.6;
 
   todayMaxTemp.textContent =
     data.forecast.forecastday[0].day.maxtemp_c.toFixed();
@@ -99,15 +99,17 @@ function updateTime(data) {
 
 function updateWeekdays(date) {
   const weekdayIndex = date.getDay();
-  const weekdayName = weekdays[weekdayIndex];
-  weekDay.textContent = weekdayName;
+  weekDay.textContent = weekdays[weekdayIndex];
 
-  const shortNames = weekdays
-    .map((name, i) => name.slice(0, 3))
-    .slice(weekdayIndex, weekdayIndex + 3);
+  const forecastDays = [];
+  for (let i = 0; i < 3; i++) {
+    const dayIndex = (weekdayIndex + i) % 7;
+    forecastDays.push(dayIndex);
+  }
+
   [todayDayName, tomorrowDayName, afterTomorrowDayName].forEach(
     (element, i) => {
-      element.textContent = shortNames[i];
+      element.textContent = weekdays[forecastDays[i]].slice(0, 3);
     }
   );
 }
