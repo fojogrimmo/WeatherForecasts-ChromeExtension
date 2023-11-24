@@ -3,7 +3,8 @@
 
 "Weather Forecasts" is a Google Chrome extension that provides users with weather information for any city in the world. You can access information such as wind speed, humidity, and even the current feels-like temperature. Check the weather forecast right in your browser!
 ## Screenshot
-![image](https://github.com/fojogrimmo/weather-chrome-extension/assets/111078093/b5b2ccbe-4796-45c0-823b-4df149041fa5)
+![image](https://github.com/fojogrimmo/WeatherForecasts-ChromeExtension/assets/111078093/563f3d3f-4f20-4944-9efc-b93b825efa14)
+
 
 ## Usage
 1. Pin the extension: Click on the pin icon in the extensions menu.
