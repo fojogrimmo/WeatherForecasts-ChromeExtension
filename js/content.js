@@ -77,7 +77,7 @@ function updateWeatherInfo(data) {
   weatherStatus.textContent = data.current.condition.text;
   feelsLike.textContent = data.current.feelslike_c.toFixed();
   humidity.textContent = data.current.humidity;
-  windSpeed.textContent = data.current.wind_kph / 3.6;
+  windSpeed.textContent = Math.ceil(data.current.wind_kph / 3.6);
 
   todayMaxTemp.textContent =
     data.forecast.forecastday[0].day.maxtemp_c.toFixed();
